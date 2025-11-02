@@ -62,23 +62,27 @@ export default function Sidebar({ selectedProjectId, onSelectProject, onViewArch
                   }`}
                 >
                   <div className="flex items-center justify-between gap-2">
-                    <span className="truncate">{project.name}</span>
-                    {rolloverCount > 0 && (
-                      <span className={`text-xs font-bold rounded-full px-2 py-0.5 whitespace-nowrap ${rolloverColor}`}>
-                        {rolloverCount}
-                      </span>
-                    )}
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="truncate">{project.name}</span>
+                      {rolloverCount > 0 && (
+                        <span
+                          className={`text-xs font-bold rounded-full px-2 py-0.5 whitespace-nowrap ${rolloverColor}`}
+                        >
+                          {rolloverCount}
+                        </span>
+                      )}
+                    </div>
+                    <button
+                      onClick={() => handleArchiveProject(project.id)}
+                      className="absolute right-2 top-1/2 -translate-y-1/2 transition-opacity p-1 hover:bg-destructive/20 rounded"
+                      title="Archive project"
+                    >
+                      <Archive className="h-4 w-4 text-muted-foreground hover:text-destructive" />
+                    </button>
                   </div>
                 </button>
-                <button
-                  onClick={() => handleArchiveProject(project.id)}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity p-1 hover:bg-destructive/20 rounded"
-                  title="Archive project"
-                >
-                  <Archive className="h-4 w-4 text-muted-foreground hover:text-destructive" />
-                </button>
               </div>
-            )
+            );
           })
         )}
       </div>
